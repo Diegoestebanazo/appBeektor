@@ -1,0 +1,7 @@
+{
+  "name": "panal",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

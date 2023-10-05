@@ -5,7 +5,7 @@
     /* Hace que la imagen cubra todo el elemento */
     background-repeat: no-repeat;
 
-    background-image: url("~src/assets/img/header1.png");
+    background-image: url("~src/assets/img/header.png");
     background-color: rgb(247 137 0 / 3%);
 }
 
@@ -15,14 +15,8 @@ ion-card {
     box-shadow: none !important;
 }
 
-ion-item {
-    --ion-item-background: transparent;
-    box-shadow: none !important;
-}
-
 ion-button {
     /* --border-radius: 25px !important; */
     text-transform: capitalize;
-    --background: #e89315;
+    --background: #f78900;
 }
-

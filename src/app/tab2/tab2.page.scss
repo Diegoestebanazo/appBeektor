@@ -1,0 +1,73 @@
+.item-native ::after {
+    padding: 0px !important;
+}
+
+.email {
+    display: flex;
+    justify-content: end;
+    margin-right: 20px;
+    font-size: 10px;
+    align-items: end;
+    font-weight: 300;
+}
+
+//------------------------------------------------------------------------------
+.form-check-input {
+    position: absolute;
+    margin-top: .3rem;
+    margin-left: -1.5rem;
+    z-index: -1;
+    opacity: 0;
+}
+
+.form-check-label {
+    padding-left: 1.5rem;
+}
+
+.form-check-label::after {
+    translate: 0px;
+}
+
+.form-check-input:checked~.form-check-label::before {
+    background-color: #007bff;
+    border-color: #007bff;
+    translate: 0px;
+}
+
+
+.form-check-input:focus~.form-check-label::before {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, .25);
+}
+
+.form-check-input:checked~.form-check-label::after {
+    background-color: #fff !important;
+    left: calc(2rem - 4px);
+    translate: -8px;
+}
+
+.form-check-label::before,
+.form-check-label::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.form-check-label::before {
+    width: 2rem;
+    height: 1rem;
+    border-radius: .5rem;
+    border: #adb5bd solid 1px;
+    background-color: #adb5bd;
+    transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.form-check-label::after {
+    width: calc(1rem - 4px);
+    height: calc(1rem - 4px);
+    border-radius: 50%;
+    background-color: #fff !important;
+    translate: 1px;
+    transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, left .15s ease-in-out;
+}

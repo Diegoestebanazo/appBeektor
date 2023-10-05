@@ -1,33 +1,29 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
-import { ApiService } from '../services/api.service';
 import { catchError, tap } from 'rxjs';
+import { ApiService } from 'src/app/services/api.service';
 
 @Component({
-  selector: 'app-tab1',
-  templateUrl: 'tab1.page.html',
-  styleUrls: ['tab1.page.scss']
+  selector: 'app-sign-up',
+  templateUrl: './sign-up.component.html',
+  styleUrls: ['./sign-up.component.scss'],
 })
-export class Tab1Page {
-
+export class SignUpComponent implements OnInit {
   formLogin!: FormGroup;
 
   constructor(public fb: FormBuilder, private router: Router,
-    private alertController: AlertController, private ServiceApi: ApiService,
-  ) {
+    private alertController: AlertController, private ServiceApi: ApiService,) {
     this.formBuilder();
   }
 
-  ngOnInit() {
-
-  }
-
+  ngOnInit() { }
 
 
   formBuilder() {
     this.formLogin = this.fb.group({
+      nombre: ['', [Validators.required, Validators.email]],
       correo: ['', [Validators.required, Validators.email]],
       contrasena: ['', [Validators.required, Validators.minLength(3)]]
     })

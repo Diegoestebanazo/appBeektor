@@ -3,9 +3,6 @@
     height: 100%;
     background-size: 100% auto;
     /* Hace que la imagen cubra todo el elemento */
-    background-repeat: no-repeat;
-
-    background-image: url("~src/assets/img/header1.png");
     background-color: rgb(247 137 0 / 3%);
 }
 
@@ -25,4 +22,3 @@ ion-button {
     text-transform: capitalize;
     --background: #e89315;
 }
-

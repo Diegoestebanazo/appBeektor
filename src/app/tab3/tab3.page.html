@@ -1,17 +1,63 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 3
+    <ion-title style="margin-top: 10px;">
+      <div style="display: flex; align-items: center; gap: 10px; padding-bottom: 10px;">
+        <ion-icon name="chevron-back-outline" style="font-size: 20px; " (click)="back()" type="button"></ion-icon>
+        <!-- <strong>{{infoUser.usuario.usuario}}</strong> -->
+        <div style="display: flex; justify-content: space-between; width: 100%;">
+          <div style="display: flex; align-items: center; gap: 20px;">
+            <ion-icon name="person-circle-outline" style="font-size: 50px;" (click)="setOpen(true)"></ion-icon>
+            {{infoUser.usuario.usuario}}
+          </div>
+          <div class="email">
+            <p style="margin-bottom: 0px;">{{infoUser.usuario.correo}}</p>
+          </div>
+        </div>
+      </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card *ngIf="colmena._id" style="margin-right: 20px;">
+    <ion-card-header>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <ion-icon name="radio-outline" style="font-size: 30px; color: #de8807;"></ion-icon>
+        <div>
+          <ion-card-title>{{colmena.nombre}}</ion-card-title>
+          <ion-card-subtitle>Fecha de creación: {{colmena.fecha | date:'medium'}} </ion-card-subtitle>
+        </div>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      {{colmena.observacion}}
+    </ion-card-content>
+  </ion-card>
+  <ion-list>
+    <ion-item>
+      <ion-label style="display: flex; align-items: center; gap: 15px;">
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+        <ion-card style="width: 100%;">
+          <ion-card-content>
+            <div
+              style="display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 40px;">
+              <ngx-gauge [type]="gaugeType" [value]="gaugeValue" [label]="gaugeLabel" [thresholds]="thresholdConfig"
+                [cap]="'butt'" [backgroundColor]="backgroundColor" [append]="gaugeAppendText" [size]="200" [thick]="6"
+                [margin]="0" [tabIndex]="10">
+              </ngx-gauge>
+              <ngx-gauge [type]="gaugeType" [value]="gaugeValueHumedad" [label]="'Humedad'"
+                [thresholds]="thresholdConfig" [cap]="'round'" [backgroundColor]="backgroundColor" [append]="'%'"
+                [size]="200" [thick]="6">
+              </ngx-gauge>
+            </div>
+          </ion-card-content>
+
+        </ion-card>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<!-- <ion-button (click)="setOpen(true)">Open</ion-button> -->
+<ion-action-sheet [isOpen]="isActionSheetOpen" header="Actions" [buttons]="actionSheetButtons"
+  (didDismiss)="setOpen(false,$event)"></ion-action-sheet>

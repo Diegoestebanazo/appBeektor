@@ -1,17 +1,42 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
+  <ion-toolbar *ngIf="infoUser">
+    <ion-title style="margin-top: 10px;">
+      <div style="display: flex; justify-content: space-between; padding-bottom: 10px;">
+        <div style="display: flex; align-items: center; gap: 20px;">
+          <ion-icon name="person-circle-outline" style="font-size: 50px;" (click)="setOpen(true)"></ion-icon>
+          {{infoUser.usuario.usuario}}
+        </div>
+        <div class="email">
+          <p>{{infoUser.usuario.correo}}</p>
+        </div>
+      </div>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <ion-list>
+    <ion-item *ngFor="let hive of listHive; let i=index">
+      <ion-label style="display: flex; align-items: center; gap: 15px;">
+        <ion-icon name="list-outline" style="color: green;"></ion-icon>
+        <div style="margin-left: 10px;">
+          <div class="form-check form-switch">
+            <input class="form-check-input" type="checkbox" role="switch" [id]="'switch-' + i"
+              (click)="changeEstate(hive);">
+            <label class="form-check-label" [for]="'switch-' + i">
+              <h3 style="margin-left: 15px;">{{hive.nombre}}
+              </h3>
+            </label>
+          </div>
+          <!-- <ion-toggle [checked]="hive.estado" (click)="changeEstate(hive);">
+          </ion-toggle> -->
+          <p>{{hive.observacion}}</p>
+        </div>
+      </ion-label>
+      <ion-icon name="chevron-forward-outline" (click)="selectHive(hive);"></ion-icon>
+    </ion-item>
+  </ion-list>
 </ion-content>
+
+<ion-action-sheet [isOpen]="isActionSheetOpen" header="Actions" [buttons]="actionSheetButtons"
+  (didDismiss)="setOpen(false,$event)"></ion-action-sheet>

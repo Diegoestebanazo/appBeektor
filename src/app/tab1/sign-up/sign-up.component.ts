@@ -23,19 +23,19 @@ export class SignUpComponent implements OnInit {
 
   formBuilder() {
     this.formLogin = this.fb.group({
-      nombre: ['', [Validators.required, Validators.email]],
+      usuario: ['', [Validators.required]],
       correo: ['', [Validators.required, Validators.email]],
       contrasena: ['', [Validators.required, Validators.minLength(3)]]
     })
   }
 
-  async login() {
+  async createAccount() {
     if (this.formLogin.valid) {
       console.log('Formulário válido');
-      this.ServiceApi.login(this.formLogin.value).pipe(tap((res) => {
+      this.ServiceApi.newAccount(this.formLogin.value).pipe(tap((res) => {
         console.log(res);
         localStorage.setItem('infoUser', JSON.stringify(res));
-        this.router.navigate(['/tabs/tab2']);
+        this.router.navigate(['/tabs/tab1']);
       }),
         catchError(async (err) => {
           console.log(err);

@@ -1,0 +1,76 @@
+<ion-content>
+  <div class="com-style">
+    <div style="height: 100%;">
+      <div style="width: 100%; height: 100%;">
+        <ion-card class="" style="display: flex; height: 100%; flex-direction: column;">
+          <div style="margin-top: 15px; margin-left: 15px;">
+            <ion-icon name="chevron-back-outline" style="font-size: 20px; color: #e89315;" routerLink="/tabs/tab2"
+              type="button"></ion-icon>
+          </div>
+          <ion-card-header
+            style="display: flex; flex-direction: column; gap: 15px; height: 25%; justify-content: center;">
+            <ion-card-title style="text-align: center">Crear cuenta</ion-card-title>
+            <div style="text-align: center; padding-left: 10px; padding-right: 10px;"><span>Crea tu cuenta para poder
+                dar
+                seguimiento a tu panal</span></div>
+          </ion-card-header>
+          <ion-card-content>
+            <form [formGroup]="formNewPanal">
+              <ion-item>
+                <ion-icon name="person-outline" style="margin-right: 10px; color: #e89315;"></ion-icon>
+                <ion-input focus-ring="true" formControlName="nombre" type="text" placeholder="Nombre"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="pin-outline" style="margin-right: 10px; color: #e89315;"></ion-icon>
+                <ion-input focus-ring="true" formControlName="ubicacion" type="text"
+                  placeholder="Ubicación"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="apps-outline" style="margin-right: 10px; color: #e89315;"></ion-icon>
+                <ion-input focus-ring="true" formControlName="produccion" type="number"
+                  placeholder="Producción"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="server-outline" style="margin-right: 10px; color: #e89315;"></ion-icon>
+                <ion-input focus-ring="true" formControlName="peso" type="number" placeholder="Peso"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="eye-outline" style="margin-right: 10px; color: #e89315;"></ion-icon>
+                <ion-input focus-ring="true" formControlName="observacion" type="text"
+                  placeholder="Observación"></ion-input>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="lock-closed-outline" style="margin-right: 10px; color: #e89315;"></ion-icon>
+                <ion-list>
+                  <ion-item>
+                    <ion-select aria-label="Sensor" placeholder="Sensor Temperatura"
+                      formControlName="productoTemperatura">
+                      <ion-select-option *ngFor="let temperatura of productosTemperatura"
+                        [value]="temperatura._id">{{temperatura.nombre}}</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-list>
+              </ion-item>
+              <ion-item>
+                <ion-icon name="lock-closed-outline" style="margin-right: 10px; color: #e89315;"></ion-icon>
+                <ion-list>
+                  <ion-item>
+                    <ion-select aria-label="Sensor" placeholder="Sensor Humedad" formControlName="productoHumedad">
+                      <ion-select-option *ngFor="let humedad of productosHumedad"
+                        [value]="humedad._id">{{humedad.nombre}}</ion-select-option>
+                    </ion-select>
+                  </ion-item>
+                </ion-list>
+              </ion-item>
+            </form>
+            <br>
+            <div style="text-align: center; margin-top: 25px;">
+              <ion-button shape="round" (click)="addColmena()">Agregar</ion-button>
+            </div>
+          </ion-card-content>
+
+        </ion-card>
+      </div>
+    </div>
+  </div>
+</ion-content>

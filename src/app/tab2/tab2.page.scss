@@ -29,8 +29,8 @@
 }
 
 .form-check-input:checked~.form-check-label::before {
-    background-color: #007bff;
-    border-color: #007bff;
+    background-color: #e89315;
+    border-color: #e89315;
     translate: 0px;
 }
 
@@ -71,3 +71,8 @@
     translate: 1px;
     transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, left .15s ease-in-out;
 }
+
+ion-icon{
+    color: #e89315;
+}
+

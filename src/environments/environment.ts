@@ -4,8 +4,7 @@
 
 export const environment = {
   production: false,
-  //url: 'https://beektor-api.onrender.com/api/'
-  url:'https://7fae-186-68-162-198.ngrok-free.app/api/'
+  url: 'https://beektor-api.onrender.com/api/'
 };
 
 /*

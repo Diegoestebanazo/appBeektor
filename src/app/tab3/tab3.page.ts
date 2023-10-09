@@ -13,7 +13,7 @@ import { ActionSheetController, AlertController } from '@ionic/angular';
 })
 export class Tab3Page {
   sensores: HiveSensor = { __v: 0, _id: '', colmena: '', humedad: '', temperatura: '', };
-  colmena: Hive = { _id: null, nombre: '', observacion: '', produccion: '', estado: false, fecha: new Date() };
+  colmena: Hive = { _id: null, nombre: '', observacion: '', produccion: '', estado: false, fecha: new Date(), solicitud: false, };
   infoUser: any;
   gaugeType = 'arch' as const;
   gaugeValue = 0;
@@ -61,20 +61,23 @@ export class Tab3Page {
         this.sensores = data;
         this.igual(data);
       }), catchError(async (err) => {
-        console.log(err);
-        const alert = await this.alertController.create({
-          header: 'Error',
-          message: err.error.msg,
-          buttons: ['OK'],
-        });
-        await alert.present();
+        if (err.error) {
+          const alert = await this.alertController.create({
+            header: 'Error',
+            message: err.error.msg,
+            buttons: ['OK'],
+          });
+          await alert.present();
+        }
       }),
       ).subscribe();
     }
 
     this.socketService.getSensores().pipe(tap((data) => {
-      this.sensores = data;
-      this.igual(data);
+      if (data.colmena === this.colmena._id) {
+        this.sensores = data;
+        this.igual(data);
+      }
     }),
       catchError(async (err) => {
         console.log(err);
@@ -99,7 +102,6 @@ export class Tab3Page {
   }
 
   setOpen(isOpen: boolean, evnet?: any) {
-    console.log('setOpen', evnet);
     if (evnet) {
       if (evnet.detail.data) {
         localStorage.removeItem('colmena');

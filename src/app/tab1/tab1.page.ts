@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { ApiService } from '../services/api.service';
 import { catchError, tap } from 'rxjs';
+import { Tab2Page } from '../tab2/tab2.page';
 
 @Component({
   selector: 'app-tab1',
@@ -13,6 +14,7 @@ import { catchError, tap } from 'rxjs';
 export class Tab1Page {
 
   formLogin!: FormGroup;
+  @ViewChild(Tab2Page) tab2Page!: Tab2Page;
 
   constructor(public fb: FormBuilder, private router: Router,
     private alertController: AlertController, private ServiceApi: ApiService,
@@ -35,14 +37,16 @@ export class Tab1Page {
 
   async login() {
     if (this.formLogin.valid) {
-      console.log('Formulário válido');
+
       this.ServiceApi.login(this.formLogin.value).pipe(tap((res) => {
         console.log(res);
         localStorage.setItem('infoUser', JSON.stringify(res));
-        this.router.navigate(['/tabs/tab2']);
+
+        /* this.router.navigate(['/tabs/tab2']); */
+        window.location.href = "/tabs/tab2";
+
       }),
         catchError(async (err) => {
-          console.log(err);
           const alert = await this.alertController.create({
             header: 'Error',
             message: err.error.msg,

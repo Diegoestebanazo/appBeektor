@@ -5,6 +5,7 @@ export interface Hive {
     produccion: string;
     estado: boolean;
     fecha: Date;
+    solicitud: boolean;
 }
 
 export interface HiveSensor {

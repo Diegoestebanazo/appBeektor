@@ -1,11 +1,12 @@
 <div class="com-style">
   <div style="height: 100%;">
     <div style="width: 100%; height: 100%;">
-      <ion-card class="" style="display: flex; justify-content: space-evenly; height: 100%; flex-direction: column;">
-        <ion-card-header>
+      <ion-card class="" style="display: flex; height: 100%; flex-direction: column;">
+        <ion-card-header style="height: 40%; display: flex; justify-content: center;">
+          <ion-img src="assets\logos\5. LOGO MANCHA.png" style="height: 50px"></ion-img>
           <ion-card-title style="text-align: center; color: white;">Bienvenido</ion-card-title>
         </ion-card-header>
-        <ion-card-content>
+        <ion-card-content style="height: 60%; padding-top: 74px;">
           <form [formGroup]="formLogin">
             <ion-item>
               <ion-icon name="mail-outline" style="margin-right: 10px; color: #e89315;"></ion-icon>
@@ -18,7 +19,7 @@
           </form>
           <br>
           <div style="text-align: center;">
-            <ion-button (click)="login()" shape="round" >Login</ion-button>
+            <ion-button (click)="login()" shape="round">Login</ion-button>
           </div>
         </ion-card-content>
       </ion-card>

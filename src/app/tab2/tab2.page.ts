@@ -10,7 +10,7 @@ import { AlertController } from '@ionic/angular';
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss']
 })
-export class Tab2Page implements OnChanges {
+export class Tab2Page {
   listHive: Hive[] = [];
   infoUser: any;
 
@@ -28,6 +28,11 @@ export class Tab2Page implements OnChanges {
   constructor(private router: Router, private ServiceApi: ApiService,
     private alertController: AlertController) {
     //this.testHive();
+    this.init();
+
+  }
+
+  init() {
     let valueToken = localStorage.getItem('infoUser');
     let token: any;
     if (valueToken) {
@@ -37,12 +42,11 @@ export class Tab2Page implements OnChanges {
     this.getListHive();
   }
 
-  ngOnChanges(): void {
 
-  }
 
   getListHive() {
     this.ServiceApi.getListHive().pipe(tap((res) => {
+
       this.listHive = res;
       /* this.router.navigate(['/tabs/tab2']); */
     }),
@@ -58,10 +62,21 @@ export class Tab2Page implements OnChanges {
     ).subscribe();
   }
 
-  selectHive(hive: Hive) {
-    console.log('Select Hive', hive);
-    localStorage.setItem('colmena', JSON.stringify(hive));
-    this.router.navigate(['/tabs/tab3']);
+  async selectHive(hive: Hive) {
+    if (hive.solicitud) {
+      localStorage.setItem('colmena', JSON.stringify(hive));
+      this.router.navigate(['/tabs/tab3']);
+    } else {
+      const alert = await this.alertController.create({
+        header: 'Warning',
+        message: 'La colmena aun no ha sido aceptada por el administrador',
+        buttons: ['OK'],
+      });
+      await alert.present();
+      localStorage.setItem('colmena', JSON.stringify(hive));
+      this.router.navigate(['/tabs/tab3']);
+    }
+
   }
 
   changeEstate(hive: Hive) {
@@ -73,7 +88,6 @@ export class Tab2Page implements OnChanges {
   }
 
   setOpen(isOpen: boolean, evnet?: any) {
-    console.log('setOpen', evnet);
     if (evnet) {
       if (evnet.detail.data) {
         localStorage.removeItem('colmena');

@@ -43,6 +43,7 @@ export class ApiService {
           observacion: element.observacion,
           produccion: element.produccion,
           estado: element.estado,
+          solicitud: element.solicitud,
           fecha: new Date(element.fecha),
         });
       });

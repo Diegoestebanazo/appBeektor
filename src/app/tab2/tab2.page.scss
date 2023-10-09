@@ -72,7 +72,13 @@
     transition: background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out, left .15s ease-in-out;
 }
 
-ion-icon{
+ion-icon {
     color: #e89315;
 }
 
+
+ion-content.background {
+    --background: url('~src/assets/logos/11. ICONO MANCHA - NEGATIVO.png') center center /100px 100px no-repeat;
+    opacity: 0.5;
+    z-index: -1;
+}

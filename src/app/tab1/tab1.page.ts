@@ -39,12 +39,9 @@ export class Tab1Page {
     if (this.formLogin.valid) {
 
       this.ServiceApi.login(this.formLogin.value).pipe(tap((res) => {
-        console.log(res);
         localStorage.setItem('infoUser', JSON.stringify(res));
-
         /* this.router.navigate(['/tabs/tab2']); */
         window.location.href = "/tabs/tab2";
-
       }),
         catchError(async (err) => {
           const alert = await this.alertController.create({
